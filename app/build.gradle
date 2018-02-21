@@ -1,0 +1,220 @@
+apply plugin: 'com.android.application'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties();
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    signingConfigs {
+        // For signing any dev builds, security = false
+        dev {
+            keyAlias "StemappKey"
+            keyPassword "devkey"
+            storeFile file("keystore_dev.jks")
+            storePassword "devstore"
+        }
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.milvum.stemapp.pilot"
+        minSdkVersion 23
+        targetSdkVersion 25
+        versionCode 5
+        versionName "1.1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // Needed when you have over 64K functions (mostly from dependencies)
+        multiDexEnabled true
+    }
+
+    testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+    }
+
+    buildTypes {
+        // The real blockchain
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "long", "CHAIN_ID", "1"
+            buildConfigField "String", "NODE_ADDRESS", "\"http://10.0.2.2:8545\""
+            buildConfigField "String", "REDEEM_ADDRESS", "\"http://10.0.2.2:8080/redeem\""
+            buildConfigField "String", "BEG_ADDRESS", "null"
+
+            signingConfig signingConfigs.release
+        }
+        pilot {
+            buildConfigField "long", "CHAIN_ID", "9351"
+            buildConfigField "String", "NODE_ADDRESS", "\"http://10.0.2.2:8545\""
+            buildConfigField "String", "REDEEM_ADDRESS", "\"http://10.0.2.2:8080/redeem\""
+            buildConfigField "String", "BEG_ADDRESS", "null"
+
+            signingConfig signingConfigs.release
+        }
+        // Remotely accessable test blockchain
+        acceptance {
+            debuggable true
+
+            buildConfigField "long", "CHAIN_ID", "9351"
+            buildConfigField "String", "NODE_ADDRESS", "\"http://10.0.2.2:8545\""
+            buildConfigField "String", "REDEEM_ADDRESS", "\"http://10.0.2.2:8080/redeem\""
+            buildConfigField "String", "BEG_ADDRESS", "\"http://10.0.2.2:8080/beg\""
+
+            signingConfig signingConfigs.dev
+        }
+        // Locally running blockchain for development
+        debug {
+            debuggable true
+
+            buildConfigField "long", "CHAIN_ID", "9351"
+            buildConfigField "String", "NODE_ADDRESS", "\"http://10.0.2.2:8545\""
+            buildConfigField "String", "REDEEM_ADDRESS", "\"http://10.0.2.2:8080/redeem\""
+            buildConfigField "String", "BEG_ADDRESS", "\"http://10.0.2.2:8080/beg\""
+
+            signingConfig signingConfigs.dev
+        }
+    }
+    lintOptions { warning 'InvalidPackage' }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.apache.commons:commons-lang3:3.5'
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:support-v4:25.4.0'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.github.d-max:spots-dialog:0.7@aar'
+    implementation 'org.web3j:core:3.0.1-android'
+    implementation 'org.ethereum:geth:1.6.6'
+    implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.madgag.spongycastle:core:1.58.0.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    compileOnly "org.projectlombok:lombok:1.16.18"
+    annotationProcessor "org.projectlombok:lombok:1.16.18"
+
+    implementation 'com.android.volley:volley:1.0.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation('com.android.support.test:runner:1.0.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation('com.android.support.test:rules:1.0.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    // Espresso dependencies
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-intents:3.0.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-accessibility:3.0.1'
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-web:3.0.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation 'com.android.support.test.espresso.idling:idling-concurrent:3.0.1'
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+
+    // The following Espresso dependency can be either "compile"
+    // or "androidTestCompile", depending on your app's implementation
+    androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.1'
+
+    androidTestUtil 'com.android.support.test:orchestrator:1.0.1'
+}
+
+/***
+ * Defining a web3j configuration to be used by the buildContractWrappers task.
+ * Based on http://mrhaki.blogspot.nl/2012/10/gradle-goodness-running-java.html
+ */
+configurations {
+    web3j
+}
+
+ext {
+    web3jVersion = '3.1.1'
+
+    web3jArtifacts = [
+            'codegen'
+    ]
+}
+
+dependencies {
+    web3jArtifacts.each { artifact ->
+        web3j "org.web3j:$artifact:$web3jVersion"
+    }
+}
+
+task buildContractWrappers {
+    description = 'Build contract wrappers'
+    println '=== START building contract wrappers ==='
+
+    ext {
+        contractDir = 'compiled-contracts'
+        outputDir = 'app/src/main/java'
+        contractsPackage = 'com.milvum.stemapp.contracts'
+    }
+
+    // Clean up old wrappers
+    delete "../$outputDir/com/milvum/stemapp/contracts"
+
+    fileTree(dir: "../$contractDir", include: '*.abi').each { file ->
+        doLast {
+            println "Wrapping $file ..."
+
+            javaexec {
+                // Set workingDir to the root of the stemapp repo
+                workingDir '../'
+
+                ext {
+                    fileNameBin = file.name.take(file.name.lastIndexOf('.')) + '.bin';
+                    inputFileBin = "$contractDir/$fileNameBin"
+                    inputFileAbi = "$contractDir/$file.name"
+                }
+
+                classpath configurations.web3j
+                main = 'org.web3j.codegen.SolidityFunctionWrapperGenerator'
+
+                args inputFileBin
+                args inputFileAbi
+                args '-o', outputDir
+                args '-p', contractsPackage
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    // Run before any java is compiled
+    android.applicationVariants.all { variant ->
+        variant.javaCompiler.dependsOn(buildContractWrappers)
+    }
+}

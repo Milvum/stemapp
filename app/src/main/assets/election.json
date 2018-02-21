@@ -1,0 +1,30 @@
+{
+  "name": "Gemeentenaam Referendum",
+  "items": [
+    {
+      "address": "3435efd0b5d7f3cb46b90e2e2dd2128cbf0740f0",
+      "name": "Blanco"
+    },
+    {
+      "address": "41d126f3d2377f37e4c907b0f69ebb1ed34a4681",
+      "name": "Gemeente \"Nederland\""
+    },
+    {
+      "address": "44b68a67076b645c991711ac641b82a465281365",
+      "name": "Gemeente \"De 12 provinciën\""
+    },
+    {
+      "address": "c7704ff0f475cfa53975f8ae2aeef008b30e835f",
+      "name": "Gemeente \"OranjeStaete\""
+    },
+    {
+      "address": "cc2f72187c6ae3929d34c653d646b4ef0753db0c",
+      "name": "Gemeente \"+1\""
+    },
+    {
+      "address": "9002ea339516c07817e15d62339b4a574a3b135e",
+      "name": "Gemeente \"Samen organiseren\""
+    }
+  ]
+}
+

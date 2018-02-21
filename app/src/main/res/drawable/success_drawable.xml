@@ -1,0 +1,14 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+            <solid android:color="@color/colorCircleSuccess" />
+            <size android:width="120dp" android:height="120dp" />
+        </shape>
+    </item>
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+            <solid android:color="@color/colorCircleSuccess" />
+            <size android:width="120dp" android:height="120dp" />
+        </shape>
+    </item>
+</selector>

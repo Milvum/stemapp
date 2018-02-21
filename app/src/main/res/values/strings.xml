@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">StemApp</string>
+
+    <string name="voteButtonText">Stem</string>
+    <string name="voteButtonNoBallot">Wachten op stembiljet</string>
+    <string name="startButtonText">Stemmen</string>
+    <string name="verifyButtonText">Controleer uw uitgebrachte stem</string>
+
+    <string name="partyTitle">Kiezen</string>
+    <string name="successTitle">Stem</string>
+    <string name="verificationTitle">Stem controle</string>
+    <string name="votingTilesTitle">Kiezen</string>
+    <string name="confirmationDialogTitle">U stemt op</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="successText">Succesvol gestemd!</string>
+    <string name="secretTokenWarning">Onthoud deze letter om uw keuze te controleren</string>
+    <string name="countdownWarning">Dit verdwijnt over 4 seconden!</string>
+    <string name="goHomeButtonText">Naar thuisscherm</string>
+    <string name="wallet">%1$s</string>
+    <string name="noWallet">No wallet avaiable</string>
+
+    <string name="preferenceFile">com.milvum.stemmapp.PREFERENCES</string>
+
+    <!-- Toast messages -->
+    <string name="errorNotEnoughEther">Geen stempas nog even geduld. Probeer het later nog eens.</string>
+    <string name="errorNoVotingPass">Geen stempas nog even geduld. Probeer het later nog eens.</string>
+    <string name="errorNoVotingBallot">U bezit geen stembiljet.</string>
+    <string name="errorMixing">Whoops! Het inwisselen van het stempas is mislukt.</string>
+    <string name="errorNoBlockchain">Kan geen verbinding maken met de blockchain.\nControleer uw internetverbinding en probeer het later nog eens.</string>
+    <string name="errorNotEnoughMasking">We zijn nog bezig met andere stemmen op te halen om uw stem te verbergen, dit duurt maximaal 5 minuten.</string>
+    <string name="startMixing">Het inwisselen van uw stempas voor een stembiljet is begonnen.</string>
+    <string name="backButtonDisabledMessage">Even geduld alstublieft!</string>
+    <string name="process_vote">Stem wordt verwerkt. \n Dit duurt 15 tot 30 seconden.</string>
+    <string name="loading_verification">Stem aan het ophalen</string>
+</resources>
+
+

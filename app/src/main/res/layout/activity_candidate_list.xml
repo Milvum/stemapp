@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_party_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.milvum.stemapp.CandidateListActivity">
+
+    <ListView
+        android:id="@+id/candidate_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:divider="@color/light_gray"
+        android:dividerHeight="1dp"
+        tools:listitem="@layout/candidate_item"
+        android:layout_above="@+id/voteButton"/>
+
+    <Button
+        android:id="@+id/voteButton"
+        style="@style/CustomButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:elevation="5dp"
+        android:enabled="false"
+        android:text="@string/voteButtonNoBallot" />
+
+</RelativeLayout>
