@@ -1,3 +1,9 @@
+# [StemApp](https://milvum.github.io/stemapp/)
+
+At the end of 2016 we started our journey with the goal: making digital voting possible for The Netherlands. In co-creation with five municipalities, we worked together to enable citizen participation on the blockchain. We believe this is a perfect step for making digital voting on the blockchain a reality. We have worked hard to realize the project and are pleased that a first version is now available for further development. That is why we are now doing an Open Source release of our StemApp project. We invite developers and security researchers to help The Netherlands in the next phase of digital voting. We be
+
+Please mention [Milvum](https://milvum.com) in communications when using this code.
+
 # StemApp
 
 The android app used to cast votes. Before this app works you need to have:
@@ -11,3 +17,7 @@ When these requirements are met, StemApp will require some configuration:
 1. The endpoints and ChainID in `app/build.gradle` need to be up to date for your build-variant. These are currently aimed at `10.0.2.2` which is `localhost` from the perspective of an android simulator. ChainID is currently set at 9351, the default id for the private Ethereum node.
 
 Once this is correctly set up, you should be able to run the app. The app will acquire its own Voting Pass if you use a build variant where `BEG_ADDRESS` is set. Otherwise the [Overseer](https://github.com/Milvum/overseer) will have to be used in conjunction to provide a Voting Pass for you.
+
+## Disclaimer
+
+The project in the current state is not market ready and thus should only be used for pilots or testing. In its current state the StemApp is not yet fully tested and not entirely secure (see open issues in the whitepaper). This version is also not yet ready for a release on the public Ethereum network. Milvum is not accountable for the use of the StemApp in any way, and the possible outcomes this may have.
