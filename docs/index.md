@@ -4,7 +4,7 @@ At the end of 2016 we started our journey with the goal: making digital voting p
 
 ## Our journey
 
-We first wrote a whitepaper to determine the operation of the application based on blockchain technology. There were a few big hurdles we had to overcome like enabling anonymity on the blockchain, while the voters could still verify their votes. Besides that, security was of course one of the biggest facets of the project. Other things we looked at was countering strategic voting by adding ‘fake’ votes and filter these votes just before the voting ends. All these solutions were described in the whitepaper after which we started the actual development of the functionalities. 
+We first wrote a [whitepaper](https://milvum.com/en/download-stemapp-whitepaper/) to determine the operation of the application based on blockchain technology. There were a few big hurdles we had to overcome like enabling anonymity on the blockchain, while the voters could still verify their votes. Besides that, security was of course one of the biggest facets of the project. Other things we looked at was countering strategic voting by adding ‘fake’ votes and filter these votes just before the voting ends. All these solutions were described in the [whitepaper](https://milvum.com/en/download-stemapp-whitepaper/) after which we started the actual development of the functionalities. 
 
 Stenden Hogeschool did a pilot with the application with their computer science students at the end of 2017 to test how the app works and collect feedback. The outcome was positive and the StemApp is ready voor the next round where security experts and third parties can go through the code in an extensive way to further improve the application.
 
